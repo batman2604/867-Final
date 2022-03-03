@@ -17,7 +17,7 @@ void dSetup(){
     R2.ConfigSelectedFeedbackSensor(TalonSRXFeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 }
 
-void drive(float l_input, float r_input){
+void drive(double l_input, double r_input){
     L1.Set(ControlMode::PercentOutput, l_input);
     L2.Set(ControlMode::PercentOutput, l_input);
     R1.Set(ControlMode::PercentOutput, r_input);

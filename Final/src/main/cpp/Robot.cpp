@@ -4,35 +4,9 @@
 
 #include "Robot.h"
 
-using namespace std::literals::chrono_literals;
-using namespace std;
-#define ENCROT 4096
-
-// TalonSRX Climber = {2};
-// TalonSRX Launcher1 = {3};
-// TalonSRX Launcher2 = {4};
 
 
 
-
-
-
-// void Launcher(){
-//   if(control.GetRawButton(5)==true){
-//     Launcher1.Set(ControlMode::PercentOutput, 1);
-//     Launcher2.Set(ControlMode::PercentOutput, 1);
-//     //wpi::future <double> wait_until(std::chrono::time_point<std::chrono::steady_clock, std::chrono::seconds> & 30);
-//    // wpi::future <double> wait_for(std::chrono::seconds<)
-
-//   }
-//   else if (control.GetRawButton(6)==true){
-//     Launcher1.Set(ControlMode::Current, 30);
-//   }
-//   else {
-//     Launcher1.Set(ControlMode::PercentOutput, 0);
-//     Launcher2.Set(ControlMode::PercentOutput, 0);
-//   }
-// }
 
 void Robot::RobotInit() {
 
@@ -52,6 +26,7 @@ void Robot::DisabledInit() {}
 void Robot::DisabledPeriodic() {}
 
 void Robot::TestInit() {
+  /*
   set_intake(1);
   autoMain(8);
   set_intake(0);
@@ -63,13 +38,16 @@ void Robot::TestInit() {
   set_intake(1);
   autoMain(7);
   set_intake(0);
+  */
+ shotSetup();
 }
 void Robot::TestPeriodic() {
-  while(true){
-  drive(control.GetRawAxis(7), control.GetRawAxis(4));
-  intake_control();
+
+  //drive(control.GetRawAxis(7), control.GetRawAxis(4));
+  //intake_control();
   shooter_control();
-  }
+  arm_control();
+  
 }
 void Robot::SimulationInit() {}
 void Robot::SimulationPeriodic() {}

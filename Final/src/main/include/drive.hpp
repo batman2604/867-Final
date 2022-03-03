@@ -6,7 +6,7 @@
         void dSetup();
         void autoMain(int target);
         void turn(int degree);
-        void drive(float l_input, float r_input);
+        void drive(double l_input, double r_input);
 
 
 

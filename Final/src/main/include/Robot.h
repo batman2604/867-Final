@@ -22,11 +22,15 @@
 #include "wpi/span.h"
 
 using namespace std::literals::chrono_literals;
+using namespace std;
+#define ENCROT 4096
 
 //Header Files
 #include "drive.hpp"
 #include "intake.hpp"
 #include "shooter.hpp"
+#include "arm.hpp"
+
 
 class Robot : public frc::TimedRobot {
  public:
