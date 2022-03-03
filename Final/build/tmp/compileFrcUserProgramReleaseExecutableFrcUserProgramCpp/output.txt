@@ -1,22 +1,22 @@
-See file:///C:/Users/Batma/OneDrive/Desktop/CODE/Final/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
+See file:///C:/Users/Batma/OneDrive/Desktop/CODE/867-Final/Final/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt for all output for compileFrcUserProgramReleaseExecutableFrcUserProgramCpp.
 compiling arm.cpp successful.
 
-compiling shooter.cpp successful.
-
 compiling drive.cpp successful.
-C:\Users\Batma\OneDrive\Desktop\CODE\Final\src\main\cpp\drive.cpp: In function 'void autoMain(int)':
-C:\Users\Batma\OneDrive\Desktop\CODE\Final\src\main\cpp\drive.cpp:42:15: warning: 'prevError' may be used uninitialized in this function [-Wmaybe-uninitialized]
+C:\Users\Batma\OneDrive\Desktop\CODE\867-Final\Final\src\main\cpp\drive.cpp: In function 'void autoMain(int)':
+C:\Users\Batma\OneDrive\Desktop\CODE\867-Final\Final\src\main\cpp\drive.cpp:42:15: warning: 'prevError' may be used uninitialized in this function [-Wmaybe-uninitialized]
          deriv = error - prevError;
          ~~~~~~^~~~~~~~~~~~~~~~~~~
-C:\Users\Batma\OneDrive\Desktop\CODE\Final\src\main\cpp\drive.cpp:42:15: warning: 'error' may be used uninitialized in this function [-Wmaybe-uninitialized]
-C:\Users\Batma\OneDrive\Desktop\CODE\Final\src\main\cpp\drive.cpp: In function 'void turn(int)':
-C:\Users\Batma\OneDrive\Desktop\CODE\Final\src\main\cpp\drive.cpp:62:15: warning: 'prevError' may be used uninitialized in this function [-Wmaybe-uninitialized]
+C:\Users\Batma\OneDrive\Desktop\CODE\867-Final\Final\src\main\cpp\drive.cpp:42:15: warning: 'error' may be used uninitialized in this function [-Wmaybe-uninitialized]
+C:\Users\Batma\OneDrive\Desktop\CODE\867-Final\Final\src\main\cpp\drive.cpp: In function 'void turn(int)':
+C:\Users\Batma\OneDrive\Desktop\CODE\867-Final\Final\src\main\cpp\drive.cpp:62:15: warning: 'prevError' may be used uninitialized in this function [-Wmaybe-uninitialized]
          deriv = error - prevError;
          ~~~~~~^~~~~~~~~~~~~~~~~~~
-C:\Users\Batma\OneDrive\Desktop\CODE\Final\src\main\cpp\drive.cpp:62:15: warning: 'error' may be used uninitialized in this function [-Wmaybe-uninitialized]
+C:\Users\Batma\OneDrive\Desktop\CODE\867-Final\Final\src\main\cpp\drive.cpp:62:15: warning: 'error' may be used uninitialized in this function [-Wmaybe-uninitialized]
+
+compiling shooter.cpp successful.
 
 compiling intake.cpp successful.
 
 compiling Robot.cpp successful.
 
-Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/Batma/OneDrive/Desktop/CODE/Final/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
+Finished compileFrcUserProgramReleaseExecutableFrcUserProgramCpp, see full log file:///C:/Users/Batma/OneDrive/Desktop/CODE/867-Final/Final/build/tmp/compileFrcUserProgramReleaseExecutableFrcUserProgramCpp/output.txt.
