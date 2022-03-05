@@ -7,21 +7,39 @@ TalonSRX R1 = {3};
 TalonSRX R2 = {4};
 frc::Joystick control(0);
 
+//std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+//double targetOffsetAngle_Horizontal = table->GetNumber("tx",0.0);
+
+double prevThrot_l;
+double prevThrot_r;
+
+
 void dSetup(){
     L1.SetNeutralMode(Brake);
-    L2.SetNeutralMode(Brake);
+    L2.SetNeutralMode(Coast);
     R1.SetNeutralMode(Brake);
-    R2.SetNeutralMode(Brake);
-    R2.SetInverted(true);
+    R2.SetNeutralMode(Coast);
     L2.SetInverted(true);
+    L1.SetInverted(true);
     R2.ConfigSelectedFeedbackSensor(TalonSRXFeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 }
 
 void drive(double l_input, double r_input){
+    /*
+    if((abs(l_input)/abs(prevThrot_l) >1.4) && (abs(l_input) > 0.7)){
+       l_input = (l_input * 0.8);
+   } else
+   if((abs(r_input)/abs(prevThrot_r) >1.4) && (abs(r_input) > 0.7)){
+       r_input = (r_input * 0.8);
+   }
+   */
     L1.Set(ControlMode::PercentOutput, l_input);
     L2.Set(ControlMode::PercentOutput, l_input);
     R1.Set(ControlMode::PercentOutput, r_input);
     R2.Set(ControlMode::PercentOutput, r_input);
+   prevThrot_l = l_input;
+   prevThrot_r = r_input;                       
+   std::this_thread::sleep_for(50ms);                               
 }
 
 

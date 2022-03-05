@@ -1,22 +1,14 @@
 #include "Robot.h"
 
-TalonSRX intake = {5};
+TalonSRX intake = {11};
 
 void iSetup(){
     intake.SetNeutralMode(Brake);
 }
-void set_intake(int input){
+void set_intake(double input){
     intake.Set(ControlMode::PercentOutput, input);
 }
 
 void intake_control(){
-    if(control.GetRawButton(5) == true){
-        set_intake(1);
-    }
-    else if(control.GetRawButton(4) == true){
-        set_intake(-1);
-    }
-    else {
-        set_intake(0);
-    }
+   set_intake(control.GetRawAxis(3));
 }
