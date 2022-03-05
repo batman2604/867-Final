@@ -7,6 +7,15 @@ TalonSRX R1 = {3};
 TalonSRX R2 = {4};
 frc::Joystick control(0);
 
+// Limelight distance measurement
+double getTargetHorizontalDistance() {
+	std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+	double targetOffsetAngle_Vertical = table->GetNumber("ty",0.0);
+	double targetAngle = (targetOffsetAngle_Vertical + LIMELIGHT_ANGLE) * PI / 180;
+	double targetHorizontalDistance = (TARGET_HEIGHT - LIMELIGHT_HEIGHT) / tan(targetAngle);
+	return targetHorizontalDistance;
+}
+
 void dSetup(){
     L1.SetNeutralMode(Brake);
     L2.SetNeutralMode(Brake);
