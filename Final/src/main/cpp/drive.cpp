@@ -15,7 +15,9 @@ double prevThrot_r;
 
 // Limelight distance measurement
 double getTargetHorizontalDistance() {
-	std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
+	auto inst = nt::NetworkTableInstance::GetDefault();
+	auto table = inst.GetTable("limelight");
+	//std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 	double targetOffsetAngle_Vertical = table->GetNumber("ty",0.0);
 	double targetAngle = (targetOffsetAngle_Vertical + LIMELIGHT_ANGLE) * PI / 180;
 	double targetHorizontalDistance = (TARGET_HEIGHT - LIMELIGHT_HEIGHT) / tan(targetAngle);
