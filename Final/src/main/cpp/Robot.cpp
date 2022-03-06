@@ -40,13 +40,14 @@ void Robot::TestInit() {
   set_intake(0);
   */
  shotSetup();
+ dSetup();
 }
 void Robot::TestPeriodic() {
 
-  //drive(control.GetRawAxis(7), control.GetRawAxis(4));
-  //intake_control();
-  shooter_control();
-  arm_control();
+  drive(control.GetRawAxis(1), control.GetRawAxis(5));
+  intake_control();
+  //shooter_control();
+  //arm_control();
   
 }
 void Robot::SimulationInit() {}
