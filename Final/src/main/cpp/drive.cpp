@@ -47,9 +47,7 @@ void drive(double l_input, double r_input){
     L2.Set(ControlMode::PercentOutput, l_input);
     R1.Set(ControlMode::PercentOutput, r_input);
     R2.Set(ControlMode::PercentOutput, r_input);
-   prevThrot_l = l_input;
-   prevThrot_r = r_input;                       
-   std::this_thread::sleep_for(50ms);                               
+                                 
 }
 
 
