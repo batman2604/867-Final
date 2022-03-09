@@ -12,7 +12,7 @@ void shotSetup(){
     //indexroll.SetNeutralMode(Brake);    
 }
 
-void set_shooter(int input){
+void set_shooter(int input) {
     S1.Set(ControlMode::PercentOutput, input);
     S2.Set(ControlMode::PercentOutput, input);
     // if(input != 0){
@@ -26,6 +26,7 @@ void set_shooter(int input){
 
 void shooter_control(){
     if(control.GetRawButton(3) == true){
+        repositionToShoot();
         set_shooter(1);
     }
     else{
