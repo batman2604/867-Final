@@ -1,4 +1,5 @@
 #include "Robot.h"
+#include <math.h>>
 
 //Motors
 TalonSRX L1 = {1};
@@ -15,14 +16,40 @@ double prevThrot_l;
 double prevThrot_r;
 
 // Limelight distance measurement
+// C++ tan takes radians as argument, atan returns radians
+// limelight table is in degrees --> need to convert to radians
 double getTargetHorizontalDistance() {
 	auto inst = nt::NetworkTableInstance::GetDefault();
 	auto table = inst.GetTable("limelight");
 	//std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
-	double targetOffsetAngle_Vertical = table->GetNumber("ty",0.0);
-	double targetAngle = (targetOffsetAngle_Vertical + LIMELIGHT_ANGLE) * PI / 180;
+	double targetOffsetAngle_Vertical = table->GetNumber("tx",0.0);
+	double targetAngle = (targetOffsetAngle_Vertical + LIMELIGHT_ANGLE) * PI / 180; // radians
 	double targetHorizontalDistance = (TARGET_HEIGHT - LIMELIGHT_HEIGHT) / tan(targetAngle);
 	return targetHorizontalDistance;
+}
+
+// Used to angle to robot towards the target. When this returns 0 we are ready to shoot.
+double getXOffset() {
+    auto inst = nt::NetworkTableInstance::GetDefault();
+	auto table = inst.GetTable("limelight");
+    double targetOffsetAngle_Horizontal = table->GetNumber("ty",0.0); // degrees
+    double angle_diff = atan(LENS_TO_SHOOTER_DIST/getTargetHorizontalDistance()) * 180 / PI; // degrees
+    return targetOffsetAngle_Horizontal - angle_diff; // what the angle would be if limelight were centered
+}
+
+void repositionToShoot() {
+    while (getXOffset()>0.1) turn(1);
+    while (getXOffset()<0.1) turn(-1);
+    // Shooter is now pointing towards hoop, go to right radius
+    double dist = getTargetHorizontalDistance(); 
+    while (dist>DISTANCE_TO_SHOOT_FROM+0.1) {
+        autoMain(dist-DISTANCE_TO_SHOOT_FROM);
+        dist = getTargetHorizontalDistance(); 
+    }
+    while (dist<DISTANCE_TO_SHOOT_FROM-0.1) {
+        autoMain(DISTANCE_TO_SHOOT_FROM-dist);
+        dist = getTargetHorizontalDistance(); 
+    }
 }
 
 void dSetup(){

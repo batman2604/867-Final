@@ -2,9 +2,11 @@
     #define DRIVEH
         
         // Limelight constants
-        #define LIMELIGHT_ANGLE 30 // in degrees
+        #define LIMELIGHT_ANGLE 55 // in degrees
         #define TARGET_HEIGHT 104 // inches 
-        #define LIMELIGHT_HEIGHT 12 // inches
+        #define LIMELIGHT_HEIGHT 20 // inches
+        #define DISTANCE_TO_SHOOT_FROM 80 // inches
+        #define LENS_TO_SHOOTER_DIST 5.75 // inches
         #define PI 3.14159265
 
         // Encoder constants
@@ -13,6 +15,8 @@
         extern  frc::Joystick control;
         extern frc::Joystick movein;
         double getTargetHorizontalDistance(); // Limelight-measured distance
+        double getXOffset();
+        void repositionToShoot();
         void dSetup();
         void autoMain(int target);
         void turn(int degree);
