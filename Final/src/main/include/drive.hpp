@@ -11,12 +11,13 @@
         #define ENCROT 4096 //Full rotation in Encoder Units
 
         extern  frc::Joystick control;
+        extern frc::Joystick movein;
         double getTargetHorizontalDistance(); // Limelight-measured distance
         void dSetup();
         void autoMain(int target);
         void turn(int degree);
         void drive(double l_input, double r_input);
-
+        void tank(double l_input, double r_input);
 
 
 

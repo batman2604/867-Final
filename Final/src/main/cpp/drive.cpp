@@ -6,6 +6,7 @@ TalonSRX L2 = {2};
 TalonSRX R1 = {3};
 TalonSRX R2 = {4};
 frc::Joystick control(0);
+frc::Joystick movein(1);
 
 //std::shared_ptr<NetworkTable> table = nt::NetworkTableInstance::GetDefault().GetTable("limelight");
 //double targetOffsetAngle_Horizontal = table->GetNumber("tx",0.0);
@@ -34,7 +35,7 @@ void dSetup(){
     R2.ConfigSelectedFeedbackSensor(TalonSRXFeedbackDevice::CTRE_MagEncoder_Relative, 0, 10);
 }
 
-void drive(double l_input, double r_input){
+void tank(double l_input, double r_input){
     /*
     if((abs(l_input)/abs(prevThrot_l) >1.4) && (abs(l_input) > 0.7)){
        l_input = (l_input * 0.8);
@@ -46,13 +47,26 @@ void drive(double l_input, double r_input){
     L1.Set(ControlMode::PercentOutput, l_input);
     L2.Set(ControlMode::PercentOutput, l_input);
     R1.Set(ControlMode::PercentOutput, r_input);
-    R2.Set(ControlMode::PercentOutput, r_input);
-                                 
+    R2.Set(ControlMode::PercentOutput, r_input);                         
+}
+void drive(double l_input, double r_input){
+    /*
+    if((abs(l_input)/abs(prevThrot_l) >1.4) && (abs(l_input) > 0.7)){
+       l_input = (l_input * 0.8);
+   } else
+   if((abs(r_input)/abs(prevThrot_r) >1.4) && (abs(r_input) > 0.7)){
+       r_input = (r_input * 0.8);
+   }
+   */
+    //y=x^{3}-0.417x^{2}+0.417x
+    L1.Set(ControlMode::PercentOutput, (pow(l_input, 3) - (0.471 * pow(l_input, 2)) + (0.417 * l_input) ));
+    L2.Set(ControlMode::PercentOutput, (pow(l_input, 3) - (0.471 * pow(l_input, 2)) + (0.417 * l_input) ));
+    R1.Set(ControlMode::PercentOutput, (pow(r_input, 3) - (0.471 * pow(r_input, 2)) + (0.417 * r_input) ));
+    R2.Set(ControlMode::PercentOutput, (pow(r_input, 3) - (0.471 * pow(r_input, 2)) + (0.417 * r_input) ));                         
 }
 
-
 //PID Values SetUp
-float kP = 0.0015;
+float kP = 0.00018;
 float kI;
 float kD;
 int pos;
@@ -69,7 +83,7 @@ void autoMain(int target){
         prevError = error;
         error = target - pos; 
         power = (kP * error) + (deriv * kD);
-        drive(power, power);
+        tank(power, power);
         pos = R2.GetSelectedSensorPosition(0);
         std::this_thread::sleep_for(10ms);
     }
@@ -89,7 +103,7 @@ void turn(int degree){
         prevError = error;
         error = rot - pos; 
         power = (kP * error) + (deriv * kD);
-        drive(power, power);
+        tank(power, power);
         pos = R2.GetSelectedSensorPosition(0);
         std::this_thread::sleep_for(10ms);
     }
