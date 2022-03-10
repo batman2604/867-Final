@@ -10,5 +10,13 @@ void set_intake(double input){
 }
 
 void intake_control(){
-   set_intake(control.GetRawAxis(3));
+   if(control.GetRawButton(5) == true){
+       set_intake(1);
+   }
+   else if (control.GetRawButton(6) == true){
+       set_intake(-1);
+   }
+   else {
+       set_intake(0);
+   }
 }

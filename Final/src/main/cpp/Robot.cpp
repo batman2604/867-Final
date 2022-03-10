@@ -3,9 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "Robot.h"
+#include <frc/Servo.h>
 
-
-
+frc::Servo ser{0};
 
 
 void Robot::RobotInit() {
@@ -39,15 +39,18 @@ void Robot::TestInit() {
   autoMain(7);
   set_intake(0);
   */
+ aSetup();
+ pSetup();
+ iSetup();
  shotSetup();
  dSetup();
 }
 void Robot::TestPeriodic() {
 
-  drive(control.GetRawAxis(1), control.GetRawAxis(5));
+  drive(movein.GetRawAxis(1), movein.GetRawAxis(5));
   intake_control();
-  //shooter_control();
-  //arm_control();
+  shooter_control();
+  //arm_control();  
   
 }
 void Robot::SimulationInit() {}
